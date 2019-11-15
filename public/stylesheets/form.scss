@@ -1,0 +1,14 @@
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input,
+textarea,
+button {
+  font: inherit;
+  color: inherit;
+  padding: 1em;
+  border: 1px solid $grey;
+  margin-bottom: 1em;
+}
