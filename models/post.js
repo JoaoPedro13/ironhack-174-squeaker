@@ -8,10 +8,6 @@ const postSchema = new mongoose.Schema(
       maxlength: 140,
       minlength: 1
     }
-    // date: {
-    //   type: Date,
-    //   default: Date.now
-    // }
   },
   {
     timestamps: {

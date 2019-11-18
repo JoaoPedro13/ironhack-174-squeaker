@@ -19,8 +19,9 @@ router.get('/create', (req, res, next) => {
 });
 
 router.post('/create', (req, res, next) => {
+  const text = req.body.text;
   Post.create({
-    text: req.body.text
+    text: text
   })
     .then(document => {
       res.redirect(`/post/${document._id}`);
@@ -58,7 +59,6 @@ router.post('/:postId/edit', (req, res, next) => {
     text: req.body.text
   })
     .then(data => {
-      console.log(data);
       res.redirect(`/post/${postId}`);
     })
     .catch(error => {
@@ -70,7 +70,6 @@ router.post('/:postId/delete', (req, res, next) => {
   const postId = req.params.postId;
   Post.findByIdAndDelete(postId)
     .then(data => {
-      console.log(data);
       res.redirect(`/post/list`);
     })
     .catch(error => {

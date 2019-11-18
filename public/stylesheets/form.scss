@@ -6,9 +6,15 @@ form {
 input,
 textarea,
 button {
-  font: inherit;
-  color: inherit;
   padding: 1em;
   border: 1px solid $grey;
+  border-radius: 0.5em;
   margin-bottom: 1em;
+  font: inherit;
+  color: inherit;
+}
+
+textarea {
+  min-height: 8em;
+  resize: vertical;
 }
