@@ -1,0 +1,7 @@
+<h2>{{user.name}}'s Profile</h2>
+
+{{#each posts}}
+  <a href="/post/{{ this._id }}">
+    {{> singlepost}}
+  </a>
+{{/each}}

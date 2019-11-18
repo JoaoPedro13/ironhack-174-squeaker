@@ -4,8 +4,11 @@ const router = new express.Router();
 
 const Post = require('./../models/post');
 
+const routeGuard = require('./../middleware/route-guard');
+
 router.get('/list', (req, res, next) => {
   Post.find()
+    .populate('author')
     .then(posts => {
       res.render('post/list', { posts });
     })
@@ -14,14 +17,17 @@ router.get('/list', (req, res, next) => {
     });
 });
 
-router.get('/create', (req, res, next) => {
+router.get('/create', routeGuard, (req, res, next) => {
   res.render('post/create');
 });
 
-router.post('/create', (req, res, next) => {
+router.post('/create', routeGuard, (req, res, next) => {
   const text = req.body.text;
+  const author = req.session.user;
+  // const author = req.user._id;
   Post.create({
-    text: text
+    text,
+    author
   })
     .then(document => {
       res.redirect(`/post/${document._id}`);
@@ -34,7 +40,9 @@ router.post('/create', (req, res, next) => {
 router.get('/:postId', (req, res, next) => {
   const postId = req.params.postId;
   Post.findById(postId)
+    .populate('author')
     .then(post => {
+      console.log(post);
       res.render('post/single', { post });
     })
     .catch(error => {
@@ -42,22 +50,33 @@ router.get('/:postId', (req, res, next) => {
     });
 });
 
-router.get('/:postId/edit', (req, res, next) => {
+router.get('/:postId/edit', routeGuard, (req, res, next) => {
   const postId = req.params.postId;
   Post.findById(postId)
     .then(post => {
-      res.render('post/edit', { post });
+      if (post.author === req.session.user) {
+        res.render('post/edit', { post });
+      } else {
+        next(new Error('User has no permission to edit post.'));
+      }
     })
     .catch(error => {
       next(error);
     });
 });
 
-router.post('/:postId/edit', (req, res, next) => {
+router.post('/:postId/edit', routeGuard, (req, res, next) => {
   const postId = req.params.postId;
-  Post.findByIdAndUpdate(postId, {
-    text: req.body.text
-  })
+
+  Post.findOneAndUpdate(
+    {
+      _id: postId,
+      author: req.session.user
+    },
+    {
+      text: req.body.text
+    }
+  )
     .then(data => {
       res.redirect(`/post/${postId}`);
     })
@@ -66,9 +85,12 @@ router.post('/:postId/edit', (req, res, next) => {
     });
 });
 
-router.post('/:postId/delete', (req, res, next) => {
+router.post('/:postId/delete', routeGuard, (req, res, next) => {
   const postId = req.params.postId;
-  Post.findByIdAndDelete(postId)
+  Post.findOneAndDelete({
+    _id: postId,
+    author: req.session.user
+  })
     .then(data => {
       res.redirect(`/post/list`);
     })

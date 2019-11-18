@@ -1,5 +1,14 @@
 <nav>
   <a href="/">Squeaker</a>
   <a href="/post/list">Post List</a>
-  <a href="/post/create">Create Post</a>
+  {{#if user}}
+    <a href="/profile/{{user._id}}">{{user.name}}</a>
+    <a href="/post/create">Create Post</a>
+    <form action="/authentication/sign-out" method="POST">
+      <button>Sign Out</button>
+    </form>
+    {{else}}
+    <a href="/authentication/sign-in">Sign In</a>
+    <a href="/authentication/sign-up">Sign Up</a>
+  {{/if}}
 </nav>

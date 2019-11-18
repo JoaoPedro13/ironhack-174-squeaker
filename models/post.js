@@ -7,6 +7,11 @@ const postSchema = new mongoose.Schema(
       required: true,
       maxlength: 140,
       minlength: 1
+    },
+    author: {
+      type: mongoose.Types.ObjectId,
+      required: true,
+      ref: 'User'
     }
   },
   {
