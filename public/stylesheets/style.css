@@ -40,11 +40,15 @@ input,
 textarea,
 button {
   padding: 1em;
-  border: 1px solid rgba(191, 191, 191, 0.5);
   border-radius: 0.5em;
   margin-bottom: 1em;
   font: inherit;
-  color: inherit; }
+  color: inherit;
+  border: 0; }
+
+input,
+textarea {
+  border: 1px solid rgba(191, 191, 191, 0.5); }
 
 textarea {
   min-height: 8em;
@@ -56,6 +60,10 @@ textarea {
   border-radius: 0.5em;
   border: 1px solid rgba(191, 191, 191, 0.5);
   background-color: white; }
+
+img {
+  max-width: 100%;
+  width: 100%; }
 
 .hero h1 {
   margin: 1em 0;

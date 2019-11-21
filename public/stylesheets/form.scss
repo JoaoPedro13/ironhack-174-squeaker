@@ -7,11 +7,16 @@ input,
 textarea,
 button {
   padding: 1em;
-  border: 1px solid $grey;
   border-radius: 0.5em;
   margin-bottom: 1em;
   font: inherit;
   color: inherit;
+  border: 0;
+}
+
+input,
+textarea {
+  border: 1px solid $grey;
 }
 
 textarea {

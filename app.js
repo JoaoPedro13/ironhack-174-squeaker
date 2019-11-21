@@ -32,6 +32,7 @@ app.use(
     force: true
   })
 );
+app.use(express.static('public'));
 
 app.use(cookieParser());
 app.use(
@@ -51,8 +52,6 @@ app.use(
     })
   })
 );
-
-app.use(express.static('public'));
 
 // Deserializing user
 // Checks if there's a user ID saved on the session

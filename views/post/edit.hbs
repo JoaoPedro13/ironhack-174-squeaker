@@ -3,9 +3,9 @@
 <form action="/post/{{post._id}}/edit" method="POST">
   <textarea name="text" maxlength="140" placeholder="Insert text">{{ post.text }}</textarea>
   {{!-- <input name="text" value={{post.text}} /> --}}
-  <button>Publish</button>
+  <button class="btn">Publish</button>
 </form>
 
 <form action="/post/{{post._id}}/delete" method="POST">
-  <button>Delete</button>
+  <button class="btn">Delete</button>
 </form>

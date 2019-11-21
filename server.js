@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 const app = require('./app');
 
-const DATABASE_URI = 'mongodb://localhost:27017/squeaker';
+const DATABASE_URI = process.env.MONGODB_URI;
 
 mongoose
   .connect(DATABASE_URI, {

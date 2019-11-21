@@ -5,4 +5,12 @@
   border: 1px solid $grey;
   background-color: white;
   // box-shadow: 0 0.25em 0.75em -0.25em $grey;
+  img {
+    margin-bottom: 1em;
+  }
+}
+
+img {
+  max-width: 100%;
+  width: 100%;
 }

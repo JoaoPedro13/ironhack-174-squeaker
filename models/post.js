@@ -12,7 +12,13 @@ const postSchema = new mongoose.Schema(
       type: mongoose.Types.ObjectId,
       required: true,
       ref: 'User'
-    }
+    },
+    images: [
+      {
+        type: mongoose.Types.ObjectId,
+        ref: 'Image'
+      }
+    ]
   },
   {
     timestamps: {
