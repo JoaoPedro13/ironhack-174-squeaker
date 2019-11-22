@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const app = require('./app');
 
 const DATABASE_URI = process.env.MONGODB_URI;
+const PORT = process.env.PORT;
 
 mongoose
   .connect(DATABASE_URI, {
@@ -14,7 +15,7 @@ mongoose
   })
   .then(() => {
     console.log('Connected to MongoDB');
-    app.listen(3000);
+    app.listen(PORT);
   })
   .catch(error => {
     console.log('There was an error connecting to MongoDB');

@@ -60,6 +60,8 @@ textarea {
   border-radius: 0.5em;
   border: 1px solid rgba(191, 191, 191, 0.5);
   background-color: white; }
+  .single-post img {
+    margin-bottom: 1em; }
 
 img {
   max-width: 100%;
